@@ -1,0 +1,1053 @@
+{
+    "centroids": [
+        [
+            55.29629629629632,
+            49.51851851851852
+        ],
+        [
+            86.53846153846155,
+            82.12820512820511
+        ],
+        [
+            25.727272727272755,
+            79.36363636363636
+        ],
+        [
+            88.20000000000002,
+            17.1142857142857
+        ],
+        [
+            26.304347826086982,
+            20.913043478260867
+        ]
+    ],
+    "cluster_metadata": {
+        "0": {
+            "name": "Average Customers",
+            "desc": "Average Income, Average Spending",
+            "color": "#f59e0b"
+        },
+        "1": {
+            "name": "Target Customers",
+            "desc": "High Income, High Spending",
+            "color": "#10b981"
+        },
+        "2": {
+            "name": "Careless Spenders",
+            "desc": "Low Income, High Spending",
+            "color": "#f43f5e"
+        },
+        "3": {
+            "name": "Careful Spenders",
+            "desc": "High Income, Low Spending",
+            "color": "#3b82f6"
+        },
+        "4": {
+            "name": "Sensible Customers",
+            "desc": "Low Income, Low Spending",
+            "color": "#8b5cf6"
+        }
+    },
+    "data_points": [
+        {
+            "income": 15.0,
+            "score": 39.0,
+            "cluster": 4
+        },
+        {
+            "income": 15.0,
+            "score": 81.0,
+            "cluster": 2
+        },
+        {
+            "income": 16.0,
+            "score": 6.0,
+            "cluster": 4
+        },
+        {
+            "income": 16.0,
+            "score": 77.0,
+            "cluster": 2
+        },
+        {
+            "income": 17.0,
+            "score": 40.0,
+            "cluster": 4
+        },
+        {
+            "income": 17.0,
+            "score": 76.0,
+            "cluster": 2
+        },
+        {
+            "income": 18.0,
+            "score": 6.0,
+            "cluster": 4
+        },
+        {
+            "income": 18.0,
+            "score": 94.0,
+            "cluster": 2
+        },
+        {
+            "income": 19.0,
+            "score": 3.0,
+            "cluster": 4
+        },
+        {
+            "income": 19.0,
+            "score": 72.0,
+            "cluster": 2
+        },
+        {
+            "income": 19.0,
+            "score": 14.0,
+            "cluster": 4
+        },
+        {
+            "income": 19.0,
+            "score": 99.0,
+            "cluster": 2
+        },
+        {
+            "income": 20.0,
+            "score": 15.0,
+            "cluster": 4
+        },
+        {
+            "income": 20.0,
+            "score": 77.0,
+            "cluster": 2
+        },
+        {
+            "income": 20.0,
+            "score": 13.0,
+            "cluster": 4
+        },
+        {
+            "income": 20.0,
+            "score": 79.0,
+            "cluster": 2
+        },
+        {
+            "income": 21.0,
+            "score": 35.0,
+            "cluster": 4
+        },
+        {
+            "income": 21.0,
+            "score": 66.0,
+            "cluster": 2
+        },
+        {
+            "income": 23.0,
+            "score": 29.0,
+            "cluster": 4
+        },
+        {
+            "income": 23.0,
+            "score": 98.0,
+            "cluster": 2
+        },
+        {
+            "income": 24.0,
+            "score": 35.0,
+            "cluster": 4
+        },
+        {
+            "income": 24.0,
+            "score": 73.0,
+            "cluster": 2
+        },
+        {
+            "income": 25.0,
+            "score": 5.0,
+            "cluster": 4
+        },
+        {
+            "income": 25.0,
+            "score": 73.0,
+            "cluster": 2
+        },
+        {
+            "income": 28.0,
+            "score": 14.0,
+            "cluster": 4
+        },
+        {
+            "income": 28.0,
+            "score": 82.0,
+            "cluster": 2
+        },
+        {
+            "income": 28.0,
+            "score": 32.0,
+            "cluster": 4
+        },
+        {
+            "income": 28.0,
+            "score": 61.0,
+            "cluster": 2
+        },
+        {
+            "income": 29.0,
+            "score": 31.0,
+            "cluster": 4
+        },
+        {
+            "income": 29.0,
+            "score": 87.0,
+            "cluster": 2
+        },
+        {
+            "income": 30.0,
+            "score": 4.0,
+            "cluster": 4
+        },
+        {
+            "income": 30.0,
+            "score": 73.0,
+            "cluster": 2
+        },
+        {
+            "income": 33.0,
+            "score": 4.0,
+            "cluster": 4
+        },
+        {
+            "income": 33.0,
+            "score": 92.0,
+            "cluster": 2
+        },
+        {
+            "income": 33.0,
+            "score": 14.0,
+            "cluster": 4
+        },
+        {
+            "income": 33.0,
+            "score": 81.0,
+            "cluster": 2
+        },
+        {
+            "income": 34.0,
+            "score": 17.0,
+            "cluster": 4
+        },
+        {
+            "income": 34.0,
+            "score": 73.0,
+            "cluster": 2
+        },
+        {
+            "income": 37.0,
+            "score": 26.0,
+            "cluster": 4
+        },
+        {
+            "income": 37.0,
+            "score": 75.0,
+            "cluster": 2
+        },
+        {
+            "income": 38.0,
+            "score": 35.0,
+            "cluster": 4
+        },
+        {
+            "income": 38.0,
+            "score": 92.0,
+            "cluster": 2
+        },
+        {
+            "income": 39.0,
+            "score": 36.0,
+            "cluster": 4
+        },
+        {
+            "income": 39.0,
+            "score": 61.0,
+            "cluster": 0
+        },
+        {
+            "income": 39.0,
+            "score": 28.0,
+            "cluster": 4
+        },
+        {
+            "income": 39.0,
+            "score": 65.0,
+            "cluster": 2
+        },
+        {
+            "income": 40.0,
+            "score": 55.0,
+            "cluster": 0
+        },
+        {
+            "income": 40.0,
+            "score": 47.0,
+            "cluster": 0
+        },
+        {
+            "income": 40.0,
+            "score": 42.0,
+            "cluster": 0
+        },
+        {
+            "income": 40.0,
+            "score": 42.0,
+            "cluster": 0
+        },
+        {
+            "income": 42.0,
+            "score": 52.0,
+            "cluster": 0
+        },
+        {
+            "income": 42.0,
+            "score": 60.0,
+            "cluster": 0
+        },
+        {
+            "income": 43.0,
+            "score": 54.0,
+            "cluster": 0
+        },
+        {
+            "income": 43.0,
+            "score": 60.0,
+            "cluster": 0
+        },
+        {
+            "income": 43.0,
+            "score": 45.0,
+            "cluster": 0
+        },
+        {
+            "income": 43.0,
+            "score": 41.0,
+            "cluster": 0
+        },
+        {
+            "income": 44.0,
+            "score": 50.0,
+            "cluster": 0
+        },
+        {
+            "income": 44.0,
+            "score": 46.0,
+            "cluster": 0
+        },
+        {
+            "income": 46.0,
+            "score": 51.0,
+            "cluster": 0
+        },
+        {
+            "income": 46.0,
+            "score": 46.0,
+            "cluster": 0
+        },
+        {
+            "income": 46.0,
+            "score": 56.0,
+            "cluster": 0
+        },
+        {
+            "income": 46.0,
+            "score": 55.0,
+            "cluster": 0
+        },
+        {
+            "income": 47.0,
+            "score": 52.0,
+            "cluster": 0
+        },
+        {
+            "income": 47.0,
+            "score": 59.0,
+            "cluster": 0
+        },
+        {
+            "income": 48.0,
+            "score": 51.0,
+            "cluster": 0
+        },
+        {
+            "income": 48.0,
+            "score": 59.0,
+            "cluster": 0
+        },
+        {
+            "income": 48.0,
+            "score": 50.0,
+            "cluster": 0
+        },
+        {
+            "income": 48.0,
+            "score": 48.0,
+            "cluster": 0
+        },
+        {
+            "income": 48.0,
+            "score": 59.0,
+            "cluster": 0
+        },
+        {
+            "income": 48.0,
+            "score": 47.0,
+            "cluster": 0
+        },
+        {
+            "income": 49.0,
+            "score": 55.0,
+            "cluster": 0
+        },
+        {
+            "income": 49.0,
+            "score": 42.0,
+            "cluster": 0
+        },
+        {
+            "income": 50.0,
+            "score": 49.0,
+            "cluster": 0
+        },
+        {
+            "income": 50.0,
+            "score": 56.0,
+            "cluster": 0
+        },
+        {
+            "income": 54.0,
+            "score": 47.0,
+            "cluster": 0
+        },
+        {
+            "income": 54.0,
+            "score": 54.0,
+            "cluster": 0
+        },
+        {
+            "income": 54.0,
+            "score": 53.0,
+            "cluster": 0
+        },
+        {
+            "income": 54.0,
+            "score": 48.0,
+            "cluster": 0
+        },
+        {
+            "income": 54.0,
+            "score": 52.0,
+            "cluster": 0
+        },
+        {
+            "income": 54.0,
+            "score": 42.0,
+            "cluster": 0
+        },
+        {
+            "income": 54.0,
+            "score": 51.0,
+            "cluster": 0
+        },
+        {
+            "income": 54.0,
+            "score": 55.0,
+            "cluster": 0
+        },
+        {
+            "income": 54.0,
+            "score": 41.0,
+            "cluster": 0
+        },
+        {
+            "income": 54.0,
+            "score": 44.0,
+            "cluster": 0
+        },
+        {
+            "income": 54.0,
+            "score": 57.0,
+            "cluster": 0
+        },
+        {
+            "income": 54.0,
+            "score": 46.0,
+            "cluster": 0
+        },
+        {
+            "income": 57.0,
+            "score": 58.0,
+            "cluster": 0
+        },
+        {
+            "income": 57.0,
+            "score": 55.0,
+            "cluster": 0
+        },
+        {
+            "income": 58.0,
+            "score": 60.0,
+            "cluster": 0
+        },
+        {
+            "income": 58.0,
+            "score": 46.0,
+            "cluster": 0
+        },
+        {
+            "income": 59.0,
+            "score": 55.0,
+            "cluster": 0
+        },
+        {
+            "income": 59.0,
+            "score": 41.0,
+            "cluster": 0
+        },
+        {
+            "income": 60.0,
+            "score": 49.0,
+            "cluster": 0
+        },
+        {
+            "income": 60.0,
+            "score": 40.0,
+            "cluster": 0
+        },
+        {
+            "income": 60.0,
+            "score": 42.0,
+            "cluster": 0
+        },
+        {
+            "income": 60.0,
+            "score": 52.0,
+            "cluster": 0
+        },
+        {
+            "income": 60.0,
+            "score": 47.0,
+            "cluster": 0
+        },
+        {
+            "income": 60.0,
+            "score": 50.0,
+            "cluster": 0
+        },
+        {
+            "income": 61.0,
+            "score": 42.0,
+            "cluster": 0
+        },
+        {
+            "income": 61.0,
+            "score": 49.0,
+            "cluster": 0
+        },
+        {
+            "income": 62.0,
+            "score": 41.0,
+            "cluster": 0
+        },
+        {
+            "income": 62.0,
+            "score": 48.0,
+            "cluster": 0
+        },
+        {
+            "income": 62.0,
+            "score": 59.0,
+            "cluster": 0
+        },
+        {
+            "income": 62.0,
+            "score": 55.0,
+            "cluster": 0
+        },
+        {
+            "income": 62.0,
+            "score": 56.0,
+            "cluster": 0
+        },
+        {
+            "income": 62.0,
+            "score": 42.0,
+            "cluster": 0
+        },
+        {
+            "income": 63.0,
+            "score": 50.0,
+            "cluster": 0
+        },
+        {
+            "income": 63.0,
+            "score": 46.0,
+            "cluster": 0
+        },
+        {
+            "income": 63.0,
+            "score": 43.0,
+            "cluster": 0
+        },
+        {
+            "income": 63.0,
+            "score": 48.0,
+            "cluster": 0
+        },
+        {
+            "income": 63.0,
+            "score": 52.0,
+            "cluster": 0
+        },
+        {
+            "income": 63.0,
+            "score": 54.0,
+            "cluster": 0
+        },
+        {
+            "income": 64.0,
+            "score": 42.0,
+            "cluster": 0
+        },
+        {
+            "income": 64.0,
+            "score": 46.0,
+            "cluster": 0
+        },
+        {
+            "income": 65.0,
+            "score": 48.0,
+            "cluster": 0
+        },
+        {
+            "income": 65.0,
+            "score": 50.0,
+            "cluster": 0
+        },
+        {
+            "income": 65.0,
+            "score": 43.0,
+            "cluster": 0
+        },
+        {
+            "income": 65.0,
+            "score": 59.0,
+            "cluster": 0
+        },
+        {
+            "income": 67.0,
+            "score": 43.0,
+            "cluster": 0
+        },
+        {
+            "income": 67.0,
+            "score": 57.0,
+            "cluster": 0
+        },
+        {
+            "income": 67.0,
+            "score": 56.0,
+            "cluster": 0
+        },
+        {
+            "income": 67.0,
+            "score": 40.0,
+            "cluster": 0
+        },
+        {
+            "income": 69.0,
+            "score": 58.0,
+            "cluster": 0
+        },
+        {
+            "income": 69.0,
+            "score": 91.0,
+            "cluster": 1
+        },
+        {
+            "income": 70.0,
+            "score": 29.0,
+            "cluster": 3
+        },
+        {
+            "income": 70.0,
+            "score": 77.0,
+            "cluster": 1
+        },
+        {
+            "income": 71.0,
+            "score": 35.0,
+            "cluster": 0
+        },
+        {
+            "income": 71.0,
+            "score": 95.0,
+            "cluster": 1
+        },
+        {
+            "income": 71.0,
+            "score": 11.0,
+            "cluster": 3
+        },
+        {
+            "income": 71.0,
+            "score": 75.0,
+            "cluster": 1
+        },
+        {
+            "income": 71.0,
+            "score": 9.0,
+            "cluster": 3
+        },
+        {
+            "income": 71.0,
+            "score": 75.0,
+            "cluster": 1
+        },
+        {
+            "income": 72.0,
+            "score": 34.0,
+            "cluster": 0
+        },
+        {
+            "income": 72.0,
+            "score": 71.0,
+            "cluster": 1
+        },
+        {
+            "income": 73.0,
+            "score": 5.0,
+            "cluster": 3
+        },
+        {
+            "income": 73.0,
+            "score": 88.0,
+            "cluster": 1
+        },
+        {
+            "income": 73.0,
+            "score": 7.0,
+            "cluster": 3
+        },
+        {
+            "income": 73.0,
+            "score": 73.0,
+            "cluster": 1
+        },
+        {
+            "income": 74.0,
+            "score": 10.0,
+            "cluster": 3
+        },
+        {
+            "income": 74.0,
+            "score": 72.0,
+            "cluster": 1
+        },
+        {
+            "income": 75.0,
+            "score": 5.0,
+            "cluster": 3
+        },
+        {
+            "income": 75.0,
+            "score": 93.0,
+            "cluster": 1
+        },
+        {
+            "income": 76.0,
+            "score": 40.0,
+            "cluster": 0
+        },
+        {
+            "income": 76.0,
+            "score": 87.0,
+            "cluster": 1
+        },
+        {
+            "income": 77.0,
+            "score": 12.0,
+            "cluster": 3
+        },
+        {
+            "income": 77.0,
+            "score": 97.0,
+            "cluster": 1
+        },
+        {
+            "income": 77.0,
+            "score": 36.0,
+            "cluster": 3
+        },
+        {
+            "income": 77.0,
+            "score": 74.0,
+            "cluster": 1
+        },
+        {
+            "income": 78.0,
+            "score": 22.0,
+            "cluster": 3
+        },
+        {
+            "income": 78.0,
+            "score": 90.0,
+            "cluster": 1
+        },
+        {
+            "income": 78.0,
+            "score": 17.0,
+            "cluster": 3
+        },
+        {
+            "income": 78.0,
+            "score": 88.0,
+            "cluster": 1
+        },
+        {
+            "income": 78.0,
+            "score": 20.0,
+            "cluster": 3
+        },
+        {
+            "income": 78.0,
+            "score": 76.0,
+            "cluster": 1
+        },
+        {
+            "income": 78.0,
+            "score": 16.0,
+            "cluster": 3
+        },
+        {
+            "income": 78.0,
+            "score": 89.0,
+            "cluster": 1
+        },
+        {
+            "income": 78.0,
+            "score": 1.0,
+            "cluster": 3
+        },
+        {
+            "income": 78.0,
+            "score": 78.0,
+            "cluster": 1
+        },
+        {
+            "income": 78.0,
+            "score": 1.0,
+            "cluster": 3
+        },
+        {
+            "income": 78.0,
+            "score": 73.0,
+            "cluster": 1
+        },
+        {
+            "income": 79.0,
+            "score": 35.0,
+            "cluster": 3
+        },
+        {
+            "income": 79.0,
+            "score": 83.0,
+            "cluster": 1
+        },
+        {
+            "income": 81.0,
+            "score": 5.0,
+            "cluster": 3
+        },
+        {
+            "income": 81.0,
+            "score": 93.0,
+            "cluster": 1
+        },
+        {
+            "income": 85.0,
+            "score": 26.0,
+            "cluster": 3
+        },
+        {
+            "income": 85.0,
+            "score": 75.0,
+            "cluster": 1
+        },
+        {
+            "income": 86.0,
+            "score": 20.0,
+            "cluster": 3
+        },
+        {
+            "income": 86.0,
+            "score": 95.0,
+            "cluster": 1
+        },
+        {
+            "income": 87.0,
+            "score": 27.0,
+            "cluster": 3
+        },
+        {
+            "income": 87.0,
+            "score": 63.0,
+            "cluster": 1
+        },
+        {
+            "income": 87.0,
+            "score": 13.0,
+            "cluster": 3
+        },
+        {
+            "income": 87.0,
+            "score": 75.0,
+            "cluster": 1
+        },
+        {
+            "income": 87.0,
+            "score": 10.0,
+            "cluster": 3
+        },
+        {
+            "income": 87.0,
+            "score": 92.0,
+            "cluster": 1
+        },
+        {
+            "income": 88.0,
+            "score": 13.0,
+            "cluster": 3
+        },
+        {
+            "income": 88.0,
+            "score": 86.0,
+            "cluster": 1
+        },
+        {
+            "income": 88.0,
+            "score": 15.0,
+            "cluster": 3
+        },
+        {
+            "income": 88.0,
+            "score": 69.0,
+            "cluster": 1
+        },
+        {
+            "income": 93.0,
+            "score": 14.0,
+            "cluster": 3
+        },
+        {
+            "income": 93.0,
+            "score": 90.0,
+            "cluster": 1
+        },
+        {
+            "income": 97.0,
+            "score": 32.0,
+            "cluster": 3
+        },
+        {
+            "income": 97.0,
+            "score": 86.0,
+            "cluster": 1
+        },
+        {
+            "income": 98.0,
+            "score": 15.0,
+            "cluster": 3
+        },
+        {
+            "income": 98.0,
+            "score": 88.0,
+            "cluster": 1
+        },
+        {
+            "income": 99.0,
+            "score": 39.0,
+            "cluster": 3
+        },
+        {
+            "income": 99.0,
+            "score": 97.0,
+            "cluster": 1
+        },
+        {
+            "income": 101.0,
+            "score": 24.0,
+            "cluster": 3
+        },
+        {
+            "income": 101.0,
+            "score": 68.0,
+            "cluster": 1
+        },
+        {
+            "income": 103.0,
+            "score": 17.0,
+            "cluster": 3
+        },
+        {
+            "income": 103.0,
+            "score": 85.0,
+            "cluster": 1
+        },
+        {
+            "income": 103.0,
+            "score": 23.0,
+            "cluster": 3
+        },
+        {
+            "income": 103.0,
+            "score": 69.0,
+            "cluster": 1
+        },
+        {
+            "income": 113.0,
+            "score": 8.0,
+            "cluster": 3
+        },
+        {
+            "income": 113.0,
+            "score": 91.0,
+            "cluster": 1
+        },
+        {
+            "income": 120.0,
+            "score": 16.0,
+            "cluster": 3
+        },
+        {
+            "income": 120.0,
+            "score": 79.0,
+            "cluster": 1
+        },
+        {
+            "income": 126.0,
+            "score": 28.0,
+            "cluster": 3
+        },
+        {
+            "income": 126.0,
+            "score": 74.0,
+            "cluster": 1
+        },
+        {
+            "income": 137.0,
+            "score": 18.0,
+            "cluster": 3
+        },
+        {
+            "income": 137.0,
+            "score": 83.0,
+            "cluster": 1
+        }
+    ]
+}
