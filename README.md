@@ -50,20 +50,51 @@ The Jupyter Notebook embeds comprehensive `seaborn` and `matplotlib` charts repr
 
 ## 📂 Repository Structure
 ```text
+├── client/                                               # React + Vite Web Application
+│   ├── src/
+│   │   ├── App.jsx                                       # Main Dashboard view & prediction logic
+│   │   ├── App.css                                       # Dashboard components styles
+│   │   ├── index.css                                     # Dark-theme global CSS system
+│   │   └── model_params.json                             # Extracted model parameters & dataset
+│   ├── index.html                                        # Application entry document
+│   └── package.json                                      # Node dependencies & dev commands
 ├── Customer_Segmentation_using_K_Means_Clustering.ipynb  # Pre-executed Jupyter Notebook
+├── extract_model.py                                      # Scikit-learn exporter script
+├── model_params.json                                     # Root copy of exported parameters
 ├── README.md                                             # Project portfolio documentation (this file)
 ```
 
 ## 🚀 Getting Started & Local Execution
-**Running the Jupyter Notebook (.ipynb)**
-To explore the machine learning model training steps and visualizations:
+
+### 💻 Option A: Running the Interactive Web Dashboard
+To view and test the real-time customer segmentation model in a premium browser dashboard:
+
+1. Ensure [Node.js](https://nodejs.org/) (v18+) is installed.
+2. Open your terminal in the project root and navigate to the client folder:
+   ```bash
+   cd client
+   ```
+3. Install the frontend dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the local Vite development server:
+   ```bash
+   npm run dev
+   ```
+5. Open your browser and navigate to the output URL (typically **`http://localhost:5173/`**).
+
+---
+
+### 📓 Option B: Running the Jupyter Notebook (.ipynb)
+To explore the machine learning model training steps and python-based data visualizations:
 
 1. Ensure Python 3.10+ is installed.
-2. Install dependencies:
+2. Install python dependencies:
    ```bash
    pip install pandas numpy matplotlib seaborn scikit-learn notebook ipykernel
    ```
-3. Launch Jupyter:
+3. Launch Jupyter Notebook:
    ```bash
    jupyter notebook
    ```
