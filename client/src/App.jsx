@@ -3,19 +3,37 @@ import modelData from './model_params.json'
 import './App.css'
 
 function App() {
-  // 1. Data and Constants
-  const { centroids, cluster_metadata: clusterMetadata, data_points: dataPoints } = modelData;
-  const totalPoints = dataPoints.length;
-
-  // 2. State Management
+  // 1. State Management
+  const [kValue, setKValue] = useState(5);
   const [selectedCluster, setSelectedCluster] = useState(null);
   const [hoveredPoint, setHoveredPoint] = useState(null);
+  const [isLightTheme, setIsLightTheme] = useState(false);
   
   // Predictor inputs
   const [inputIncome, setInputIncome] = useState(50);
   const [inputScore, setInputScore] = useState(50);
   const [prediction, setPrediction] = useState(null);
   const [isPredicting, setIsPredicting] = useState(false);
+
+  // 2. Load Active Model Parameters based on Selected K
+  const currentModel = useMemo(() => {
+    return modelData[kValue.toString()] || modelData["5"];
+  }, [kValue]);
+
+  const { centroids, cluster_metadata: clusterMetadata, data_points: dataPoints } = currentModel;
+  const totalPoints = dataPoints.length;
+
+  const toggleTheme = () => {
+    setIsLightTheme(prev => {
+      const next = !prev;
+      if (next) {
+        document.body.classList.add('light-theme');
+      } else {
+        document.body.classList.remove('light-theme');
+      }
+      return next;
+    });
+  };
 
   // Data Explorer Table State
   const [searchQuery, setSearchQuery] = useState('');
@@ -228,25 +246,82 @@ function App() {
     { k: 8, wcss: 25000, desc: "Overclustering" }
   ];
 
-  // Specific marketing recommendations
-  const clusterBusinessStrategies = {
-    0: "Standard advertising, seasonal mailers, loyalty tier activation to increase visits.",
-    1: "VIP newsletters, personal shoppers, early access product drops, premium rewards.",
-    2: "Impulse buys at checkouts, highly active social media discount campaigns, referral vouchers.",
-    3: "Cashback alerts, premium bundle packages, highlighting value propositions and durability.",
-    4: "Utility-focused campaigns, essential items discounts, low-barrier loyalty registration."
+  // Specific marketing recommendations based on segment names
+  const getBusinessStrategy = (name) => {
+    const strategies = {
+      "Average Customers": "Standard advertising, seasonal mailers, loyalty tier activation to increase visits.",
+      "Target Customers": "VIP newsletters, personal shoppers, early access product drops, premium rewards.",
+      "Careless Spenders": "Impulse buys at checkouts, highly active social media discount campaigns, referral vouchers.",
+      "Careful Spenders": "Cashback alerts, premium bundle packages, highlighting value propositions and durability.",
+      "Sensible Customers": "Utility-focused campaigns, essential items discounts, low-barrier loyalty registration.",
+      "Affluent Moderates": "Exclusive pre-sales, premium upgrades, tailored advisory services.",
+      "Budget Moderates": "Discount packages, targeted value alerts, loyalty point boosts.",
+      "Active Spenders": "Flash sales, bundle discounts, social media engagement rewards.",
+      "Frugal Average": "Value-for-money packages, coupons, marketing campaigns.",
+      "Standard Customers": "Standard promotional emails, basic newsletter updates, periodic sales alerts."
+    };
+    return strategies[name] || "Standard marketing outreach and seasonal offers.";
   };
 
   return (
     <div className="container">
-      {/* 1. Header */}
-      <header className="app-header">
+      {/* 1. Sticky Navigation Header */}
+      <header className="sticky-header">
         <div className="brand-section">
           <h1>TargetCust.ai</h1>
-          <p>Enterprise Customer Segmentation & Predictor Dashboard (K-Means Clustering)</p>
+          <p>Enterprise Customer Segmentation Dashboard</p>
         </div>
-        <div className="header-badge">
-          SkLearn K-Means Engine
+        <div className="header-controls">
+          <nav className="nav-links">
+            <a href="#plot-section" className="nav-link">Scatter Plot</a>
+            <a href="#profiles-section" className="nav-link">Segment Profiles</a>
+            <a href="#explorer-section" className="nav-link">Data Explorer</a>
+          </nav>
+          
+          {/* K-Value Selection control in the header */}
+          <div className="k-select-panel" title="Choose K clusters">
+            <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-secondary)', padding: '0 0.4rem' }}>K:</span>
+            {[2, 3, 4, 5, 6, 7, 8].map((k) => (
+              <button
+                key={k}
+                type="button"
+                className={`btn-k-select ${kValue === k ? 'active' : ''}`}
+                onClick={() => {
+                  setKValue(k);
+                  setSelectedCluster(null);
+                  setPrediction(null);
+                }}
+              >
+                {k}
+              </button>
+            ))}
+          </div>
+
+          {/* Theme Toggle Button */}
+          <button 
+            type="button"
+            className="btn-theme-toggle" 
+            onClick={toggleTheme}
+            title={isLightTheme ? "Switch to Dark Mode" : "Switch to Light Mode"}
+          >
+            {isLightTheme ? (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <circle cx="12" cy="12" r="5" />
+                <line x1="12" y1="1" x2="12" y2="3" />
+                <line x1="12" y1="21" x2="12" y2="23" />
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                <line x1="1" y1="12" x2="3" y2="12" />
+                <line x1="21" y1="12" x2="23" y2="12" />
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+              </svg>
+            ) : (
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+              </svg>
+            )}
+          </button>
         </div>
       </header>
 
@@ -277,8 +352,8 @@ function App() {
             </svg>
           </div>
           <div className="metric-info">
-            <h3>Optimal Clusters (K)</h3>
-            <p>5 Segments</p>
+            <h3>Active Segments (K)</h3>
+            <p>{kValue} <span style={{ fontSize: '0.85rem', fontWeight: 500, color: 'var(--text-muted)' }}> (Optimal: 5)</span></p>
           </div>
         </div>
 
@@ -314,7 +389,7 @@ function App() {
       {/* 3. Main Plot & Predictor Workspace */}
       <div className="workspace-grid">
         {/* Left Card: Custom SVG Scatter Plot */}
-        <div className="glass-card plot-card">
+        <div className="glass-card plot-card" id="plot-section">
           <div className="section-title">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <line x1="18" y1="20" x2="18" y2="10" />
@@ -422,7 +497,7 @@ function App() {
                 className="plot-axis-label"
                 style={{ fontWeight: 600, fill: 'var(--text-primary)' }}
               >
-                Annual Income (k$)
+                Annual Income (₹k)
               </text>
 
               <text 
@@ -562,7 +637,7 @@ function App() {
                 )}
                 <div className="tooltip-row">
                   <span>Annual Income:</span>
-                  <span className="tooltip-value">${hoveredPoint.income}k</span>
+                  <span className="tooltip-value">₹{hoveredPoint.income}k</span>
                 </div>
                 <div className="tooltip-row">
                   <span>Spending Score:</span>
@@ -572,7 +647,6 @@ function App() {
             )}
           </div>
         </div>
-
         {/* Right Card: Segment Predictor */}
         <div className="glass-card predictor-card">
           <div className="section-title">
@@ -588,7 +662,7 @@ function App() {
             <div className="form-group">
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                 <label htmlFor="income-input">Annual Income</label>
-                <span style={{ fontSize: '0.9rem', fontWeight: '700', color: '#818cf8' }}>${inputIncome}k</span>
+                <span style={{ fontSize: '0.9rem', fontWeight: '700', color: '#818cf8' }}>₹{inputIncome}k</span>
               </div>
               <div className="input-container">
                 <input 
@@ -600,7 +674,7 @@ function App() {
                   onChange={(e) => setInputIncome(Math.min(160, Math.max(1, parseInt(e.target.value, 10) || 0)))}
                   className="form-input"
                 />
-                <span className="input-suffix">k$</span>
+                <span className="input-suffix">₹k</span>
               </div>
               <input 
                 type="range" 
@@ -688,7 +762,7 @@ function App() {
 
                 <div className="result-strategy" style={{ borderLeftColor: prediction.color }}>
                   <h4>Marketing Recommendation</h4>
-                  <p>{clusterBusinessStrategies[prediction.clusterIdx]}</p>
+                  <p>{getBusinessStrategy(prediction.name)}</p>
                 </div>
 
                 <div style={{ marginTop: '1rem', width: '100%' }}>
@@ -744,7 +818,7 @@ function App() {
             Optimal Cluster Selection: The Elbow Method
           </div>
           <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-            The K-Means algorithm requires defining K (number of clusters) beforehand. We ran the model multiple times (K=1 to K=8) and plotted the **WCSS (Within-Cluster Sum of Squares)**. The optimal choice is the "elbow" point, where adding more clusters yields diminishing returns in variance reduction. For this dataset, the elbow occurs clearly at **K=5**.
+            The K-Means algorithm requires defining K (number of clusters) beforehand. We ran the model multiple times (K=1 to K=8) and plotted the **WCSS (Within-Cluster Sum of Squares)**. The optimal choice is the "elbow" point, where adding more clusters yields diminishing returns in variance reduction. Click any bar below to load that K-Means parameter set into the dashboard.
           </p>
 
           <div className="elbow-visualizer">
@@ -755,9 +829,18 @@ function App() {
               const maxVal = 270000;
               const heightPct = 10 + ((d.wcss - minVal) / (maxVal - minVal)) * 80;
               return (
-                <div key={d.k} className="elbow-bar-container" title={`${d.desc} (WCSS: ${d.wcss})`}>
+                <div 
+                  key={d.k} 
+                  className="elbow-bar-container" 
+                  title={`${d.desc} (WCSS: ${d.wcss}) - Click to select K=${d.k}`}
+                  onClick={() => {
+                    setKValue(d.k);
+                    setSelectedCluster(null);
+                    setPrediction(null);
+                  }}
+                >
                   <div 
-                    className={`elbow-bar ${d.optimal ? 'optimal' : ''}`}
+                    className={`elbow-bar ${d.optimal ? 'optimal' : ''} ${kValue === d.k ? 'active' : ''}`}
                     style={{ height: `${heightPct}%` }}
                   ></div>
                   <span className="elbow-bar-label">K={d.k}</span>
@@ -790,19 +873,19 @@ function App() {
               <strong style={{ color: 'var(--text-primary)' }}>42 (Deterministic)</strong>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border-glass)', paddingBottom: '0.4rem' }}>
-              <span style={{ color: 'var(--text-secondary)' }}>Optimal K Selection:</span>
-              <strong style={{ color: '#10b981' }}>K = 5</strong>
+              <span style={{ color: 'var(--text-secondary)' }}>Active K Selection:</span>
+              <strong style={{ color: kValue === 5 ? '#10b981' : 'var(--primary)' }}>K = {kValue} {kValue === 5 ? '(Optimal)' : ''}</strong>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <span style={{ color: 'var(--text-secondary)' }}>Trained Features:</span>
-              <strong style={{ color: 'var(--text-primary)' }}>Income (k$), Spending Score (1-100)</strong>
+              <strong style={{ color: 'var(--text-primary)' }}>Income (₹k), Spending Score (1-100)</strong>
             </div>
           </div>
         </div>
       </div>
 
       {/* 5. Customer Profile breakdowns */}
-      <section className="profiles-section">
+      <section className="profiles-section" id="profiles-section">
         <div className="section-title">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
@@ -833,7 +916,7 @@ function App() {
                 <div className="profile-stats">
                   <div className="profile-stat-box">
                     <span>Avg Income</span>
-                    <strong>${stat.avgIncome}k</strong>
+                    <strong>₹{stat.avgIncome}k</strong>
                   </div>
                   <div className="profile-stat-box">
                     <span>Avg Score</span>
@@ -853,7 +936,7 @@ function App() {
                     Campaign Strategy:
                   </strong>
                   <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
-                    {clusterBusinessStrategies[key]}
+                    {getBusinessStrategy(stat.name)}
                   </p>
                 </div>
               </div>
@@ -863,7 +946,7 @@ function App() {
       </section>
 
       {/* 6. Data Explorer Table */}
-      <section className="table-section">
+      <section className="table-section" id="explorer-section">
         <div className="table-header-row">
           <div className="section-title" style={{ marginBottom: 0 }}>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -921,7 +1004,7 @@ function App() {
                   Customer ID {sortConfig.key === 'id' ? (sortConfig.direction === 'asc' ? '▲' : '▼') : ''}
                 </th>
                 <th className="sortable" onClick={() => handleSort('income')}>
-                  Annual Income {sortConfig.key === 'income' ? (sortConfig.direction === 'asc' ? '▲' : '▼') : ''}
+                  Annual Income (₹k) {sortConfig.key === 'income' ? (sortConfig.direction === 'asc' ? '▲' : '▼') : ''}
                 </th>
                 <th className="sortable" onClick={() => handleSort('score')}>
                   Spending Score {sortConfig.key === 'score' ? (sortConfig.direction === 'asc' ? '▲' : '▼') : ''}
@@ -936,7 +1019,7 @@ function App() {
                 currentTableData.map(row => (
                   <tr key={row.id}>
                     <td>Customer #{row.id}</td>
-                    <td>${row.income}k</td>
+                    <td>₹{row.income}k</td>
                     <td>{row.score} pts</td>
                     <td>
                       <div className="row-cluster-indicator">
@@ -991,10 +1074,7 @@ function App() {
 
       {/* 7. Footer */}
       <footer className="app-footer">
-        <p>TargetCust.ai &bull; Machine Learning Customer Segmentation Dashboard &bull; Internship Task 02</p>
-        <p style={{ marginTop: '0.5rem', fontSize: '0.75rem' }}>
-          Developed using React, Vite, CSS Grid & Custom SVG Vector Graphics. View the algorithm execution in the Jupyter Notebook.
-        </p>
+        <p>Customer Segmentation Dashboard &bull; Powered by K-Means Clustering Algorithm &bull; © {new Date().getFullYear()}</p>
       </footer>
     </div>
   )
