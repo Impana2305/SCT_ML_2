@@ -8,7 +8,7 @@ function App() {
   const [selectedCluster, setSelectedCluster] = useState(null);
   const [hoveredPoint, setHoveredPoint] = useState(null);
   const [isLightTheme, setIsLightTheme] = useState(false);
-  
+
   // Predictor inputs
   const [inputIncome, setInputIncome] = useState(50);
   const [inputScore, setInputScore] = useState(50);
@@ -66,17 +66,17 @@ function App() {
     const rect = e.currentTarget.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
     const clickY = e.clientY - rect.top;
-    
+
     // Reverse calculation
     const plotWidth = svgWidth - margin.left - margin.right;
     const plotHeight = svgHeight - margin.top - margin.bottom;
-    
+
     const pctX = (clickX - margin.left) / plotWidth;
     const pctY = (svgHeight - margin.bottom - clickY) / plotHeight;
-    
+
     const inc = Math.round(xMin + pctX * (xMax - xMin));
     const scr = Math.round(yMin + pctY * (yMax - yMin));
-    
+
     if (inc >= 15 && inc <= 137 && scr >= 1 && scr <= 99) {
       setInputIncome(inc);
       setInputScore(scr);
@@ -86,7 +86,7 @@ function App() {
   // 4. K-Means Prediction Engine (Euclidean Distance Model)
   const runPrediction = () => {
     setIsPredicting(true);
-    
+
     // Simulate slight model computation latency for premium UX feel
     setTimeout(() => {
       let minDistance = Infinity;
@@ -97,10 +97,10 @@ function App() {
         const [centIncome, centScore] = centroid;
         // Euclidean distance calculation: sqrt((x1-x2)^2 + (y1-y2)^2)
         const dist = Math.sqrt(
-          Math.pow(inputIncome - centIncome, 2) + 
+          Math.pow(inputIncome - centIncome, 2) +
           Math.pow(inputScore - centScore, 2)
         );
-        
+
         distanceDetails.push({
           cluster: idx,
           name: clusterMetadata[idx].name,
@@ -171,7 +171,7 @@ function App() {
       result.sort((a, b) => {
         let valA = a[sortConfig.key];
         let valB = b[sortConfig.key];
-        
+
         // Handle sorting by cluster metadata name
         if (sortConfig.key === 'clusterName') {
           valA = clusterMetadata[a.cluster].name;
@@ -268,7 +268,7 @@ function App() {
       {/* 1. Sticky Navigation Header */}
       <header className="sticky-header">
         <div className="brand-section">
-          <h1>TargetCust.ai</h1>
+          <h1>K-Means Customer Segmentation System</h1>
           <p>Enterprise Customer Segmentation Dashboard</p>
         </div>
         <div className="header-controls">
@@ -277,7 +277,7 @@ function App() {
             <a href="#profiles-section" className="nav-link">Segment Profiles</a>
             <a href="#explorer-section" className="nav-link">Data Explorer</a>
           </nav>
-          
+
           {/* K-Value Selection control in the header */}
           <div className="k-select-panel" title="Choose K clusters">
             <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--text-secondary)', padding: '0 0.4rem' }}>K:</span>
@@ -298,9 +298,9 @@ function App() {
           </div>
 
           {/* Theme Toggle Button */}
-          <button 
+          <button
             type="button"
-            className="btn-theme-toggle" 
+            className="btn-theme-toggle"
             onClick={toggleTheme}
             title={isLightTheme ? "Switch to Dark Mode" : "Switch to Light Mode"}
           >
@@ -398,9 +398,9 @@ function App() {
             </svg>
             Interactive Customer Segments Plot
           </div>
-          
+
           <div className="plot-legend">
-            <div 
+            <div
               className={`legend-item ${selectedCluster === null ? 'active' : 'dimmed'}`}
               onClick={() => setSelectedCluster(null)}
             >
@@ -410,7 +410,7 @@ function App() {
             {Object.keys(clusterMetadata).map(key => {
               const info = clusterMetadata[key];
               return (
-                <div 
+                <div
                   key={key}
                   className={`legend-item ${selectedCluster === parseInt(key, 10) ? 'active' : selectedCluster !== null ? 'dimmed' : ''}`}
                   onClick={() => setSelectedCluster(parseInt(key, 10))}
@@ -423,8 +423,8 @@ function App() {
           </div>
 
           <div className="plot-container">
-            <svg 
-              className="svg-plot" 
+            <svg
+              className="svg-plot"
               viewBox={`0 0 ${svgWidth} ${svgHeight}`}
               onClick={getDataCoords}
               style={{ cursor: 'crosshair' }}
@@ -432,17 +432,17 @@ function App() {
               {/* Horizontal Grid lines */}
               {[0, 20, 40, 60, 80, 100].map(val => (
                 <g key={`y-grid-${val}`}>
-                  <line 
-                    x1={margin.left} 
-                    y1={getSvgY(val)} 
-                    x2={svgWidth - margin.right} 
-                    y2={getSvgY(val)} 
+                  <line
+                    x1={margin.left}
+                    y1={getSvgY(val)}
+                    x2={svgWidth - margin.right}
+                    y2={getSvgY(val)}
                     className="plot-grid-line"
                   />
-                  <text 
-                    x={margin.left - 12} 
-                    y={getSvgY(val) + 4} 
-                    textAnchor="end" 
+                  <text
+                    x={margin.left - 12}
+                    y={getSvgY(val) + 4}
+                    textAnchor="end"
                     className="plot-axis-label"
                   >
                     {val}
@@ -453,17 +453,17 @@ function App() {
               {/* Vertical Grid lines */}
               {[0, 20, 40, 60, 80, 100, 120, 140].map(val => (
                 <g key={`x-grid-${val}`}>
-                  <line 
-                    x1={getSvgX(val)} 
-                    y1={margin.top} 
-                    x2={getSvgX(val)} 
-                    y2={svgHeight - margin.bottom} 
+                  <line
+                    x1={getSvgX(val)}
+                    y1={margin.top}
+                    x2={getSvgX(val)}
+                    y2={svgHeight - margin.bottom}
                     className="plot-grid-line"
                   />
-                  <text 
-                    x={getSvgX(val)} 
-                    y={svgHeight - margin.bottom + 20} 
-                    textAnchor="middle" 
+                  <text
+                    x={getSvgX(val)}
+                    y={svgHeight - margin.bottom + 20}
+                    textAnchor="middle"
                     className="plot-axis-label"
                   >
                     {val}
@@ -472,38 +472,38 @@ function App() {
               ))}
 
               {/* X Axis Line */}
-              <line 
-                x1={margin.left} 
-                y1={svgHeight - margin.bottom} 
-                x2={svgWidth - margin.right} 
-                y2={svgHeight - margin.bottom} 
+              <line
+                x1={margin.left}
+                y1={svgHeight - margin.bottom}
+                x2={svgWidth - margin.right}
+                y2={svgHeight - margin.bottom}
                 className="plot-axis-line"
               />
 
               {/* Y Axis Line */}
-              <line 
-                x1={margin.left} 
-                y1={margin.top} 
-                x2={margin.left} 
-                y2={svgHeight - margin.bottom} 
+              <line
+                x1={margin.left}
+                y1={margin.top}
+                x2={margin.left}
+                y2={svgHeight - margin.bottom}
                 className="plot-axis-line"
               />
 
               {/* Axis Labels */}
-              <text 
-                x={margin.left + (svgWidth - margin.left - margin.right) / 2} 
-                y={svgHeight - 15} 
-                textAnchor="middle" 
+              <text
+                x={margin.left + (svgWidth - margin.left - margin.right) / 2}
+                y={svgHeight - 15}
+                textAnchor="middle"
                 className="plot-axis-label"
                 style={{ fontWeight: 600, fill: 'var(--text-primary)' }}
               >
                 Annual Income (₹k)
               </text>
 
-              <text 
-                x={18} 
-                y={margin.top + (svgHeight - margin.top - margin.bottom) / 2} 
-                textAnchor="middle" 
+              <text
+                x={18}
+                y={margin.top + (svgHeight - margin.top - margin.bottom) / 2}
+                textAnchor="middle"
                 className="plot-axis-label"
                 transform={`rotate(-90, 18, ${margin.top + (svgHeight - margin.top - margin.bottom) / 2})`}
                 style={{ fontWeight: 600, fill: 'var(--text-primary)' }}
@@ -512,10 +512,10 @@ function App() {
               </text>
 
               {/* Click mapping guide text */}
-              <text 
-                x={svgWidth - margin.right} 
-                y={margin.top - 15} 
-                textAnchor="end" 
+              <text
+                x={svgWidth - margin.right}
+                y={margin.top - 15}
+                textAnchor="end"
                 className="plot-title"
               >
                 * TIP: Click anywhere on chart canvas to place coordinates into predictor form
@@ -560,8 +560,8 @@ function App() {
                 const isDimmed = selectedCluster !== null && idx !== selectedCluster;
 
                 return (
-                  <g 
-                    key={`centroid-${idx}`} 
+                  <g
+                    key={`centroid-${idx}`}
                     className={`centroid ${isDimmed ? 'dimmed' : ''}`}
                     onMouseEnter={() => setHoveredPoint({
                       type: 'centroid',
@@ -587,10 +587,10 @@ function App() {
               {prediction && (
                 <g>
                   {/* Pulsing ring indicator */}
-                  <circle 
-                    cx={getSvgX(prediction.income)} 
-                    cy={getSvgY(prediction.score)} 
-                    r={18} 
+                  <circle
+                    cx={getSvgX(prediction.income)}
+                    cy={getSvgY(prediction.score)}
+                    r={18}
                     className="pulse-ring"
                     style={{ stroke: prediction.color }}
                   />
@@ -618,7 +618,7 @@ function App() {
 
             {/* Custom Styled Tooltip */}
             {hoveredPoint && (
-              <div 
+              <div
                 className="plot-tooltip"
                 style={{
                   left: `${hoveredPoint.svgX + 15}px`,
@@ -657,7 +657,7 @@ function App() {
             </svg>
             Segment Predictor Tool
           </div>
-          
+
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
             <div className="form-group">
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -665,21 +665,21 @@ function App() {
                 <span style={{ fontSize: '0.9rem', fontWeight: '700', color: '#818cf8' }}>₹{inputIncome}k</span>
               </div>
               <div className="input-container">
-                <input 
+                <input
                   id="income-input"
-                  type="number" 
-                  min="5" 
+                  type="number"
+                  min="5"
                   max="160"
-                  value={inputIncome} 
+                  value={inputIncome}
                   onChange={(e) => setInputIncome(Math.min(160, Math.max(1, parseInt(e.target.value, 10) || 0)))}
                   className="form-input"
                 />
                 <span className="input-suffix">₹k</span>
               </div>
-              <input 
-                type="range" 
-                min="5" 
-                max="150" 
+              <input
+                type="range"
+                min="5"
+                max="150"
                 value={inputIncome}
                 onChange={(e) => setInputIncome(parseInt(e.target.value, 10))}
                 className="range-slider"
@@ -692,30 +692,30 @@ function App() {
                 <span style={{ fontSize: '0.9rem', fontWeight: '700', color: '#818cf8' }}>{inputScore}</span>
               </div>
               <div className="input-container">
-                <input 
+                <input
                   id="score-input"
-                  type="number" 
-                  min="1" 
+                  type="number"
+                  min="1"
                   max="100"
-                  value={inputScore} 
+                  value={inputScore}
                   onChange={(e) => setInputScore(Math.min(100, Math.max(1, parseInt(e.target.value, 10) || 0)))}
                   className="form-input"
                 />
                 <span className="input-suffix">pts</span>
               </div>
-              <input 
-                type="range" 
-                min="1" 
-                max="100" 
+              <input
+                type="range"
+                min="1"
+                max="100"
                 value={inputScore}
                 onChange={(e) => setInputScore(parseInt(e.target.value, 10))}
                 className="range-slider"
               />
             </div>
 
-            <button 
-              type="button" 
-              onClick={runPrediction} 
+            <button
+              type="button"
+              onClick={runPrediction}
               className="btn-predict"
               disabled={isPredicting}
             >
@@ -747,15 +747,15 @@ function App() {
             ) : (
               <>
                 <div className="result-header">
-                  <span 
-                    className="result-cluster-badge" 
+                  <span
+                    className="result-cluster-badge"
                     style={{ background: prediction.color }}
                   >
                     Segment #{prediction.clusterIdx}
                   </span>
                   <h3 className="result-title">{prediction.name}</h3>
                 </div>
-                
+
                 <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
                   <strong>Description:</strong> {prediction.desc}
                 </p>
@@ -773,11 +773,11 @@ function App() {
                     {prediction.distances.map((dist) => {
                       const isClosest = dist.cluster === prediction.clusterIdx;
                       return (
-                        <div 
+                        <div
                           key={dist.cluster}
-                          style={{ 
-                            display: 'flex', 
-                            justifyContent: 'space-between', 
+                          style={{
+                            display: 'flex',
+                            justifyContent: 'space-between',
                             fontSize: '0.75rem',
                             color: isClosest ? 'var(--text-primary)' : 'var(--text-muted)',
                             fontWeight: isClosest ? '700' : '400',
@@ -794,8 +794,8 @@ function App() {
                   </div>
                 </div>
 
-                <button 
-                  type="button" 
+                <button
+                  type="button"
                   onClick={handleResetPrediction}
                   className="btn-reset"
                 >
@@ -829,9 +829,9 @@ function App() {
               const maxVal = 270000;
               const heightPct = 10 + ((d.wcss - minVal) / (maxVal - minVal)) * 80;
               return (
-                <div 
-                  key={d.k} 
-                  className="elbow-bar-container" 
+                <div
+                  key={d.k}
+                  className="elbow-bar-container"
                   title={`${d.desc} (WCSS: ${d.wcss}) - Click to select K=${d.k}`}
                   onClick={() => {
                     setKValue(d.k);
@@ -839,7 +839,7 @@ function App() {
                     setPrediction(null);
                   }}
                 >
-                  <div 
+                  <div
                     className={`elbow-bar ${d.optimal ? 'optimal' : ''} ${kValue === d.k ? 'active' : ''}`}
                     style={{ height: `${heightPct}%` }}
                   ></div>
@@ -899,10 +899,10 @@ function App() {
           {Object.keys(clusterStats).map(key => {
             const stat = clusterStats[key];
             return (
-              <div 
-                key={key} 
+              <div
+                key={key}
                 className="glass-card profile-card"
-                style={{ 
+                style={{
                   borderTopColor: stat.color,
                   '--cluster-color-alpha': `${stat.color}20`,
                   opacity: selectedCluster === null || selectedCluster === parseInt(key, 10) ? 1 : 0.45
@@ -912,7 +912,7 @@ function App() {
                   <h3 className="profile-title" style={{ color: stat.color }}>{stat.name}</h3>
                   <span className="profile-badge">{stat.percentage}%</span>
                 </div>
-                
+
                 <div className="profile-stats">
                   <div className="profile-stat-box">
                     <span>Avg Income</span>
@@ -966,9 +966,9 @@ function App() {
                 <circle cx="11" cy="11" r="8" />
                 <line x1="21" y1="21" x2="16.65" y2="16.65" />
               </svg>
-              <input 
-                type="text" 
-                placeholder="Search by ID, Income, Score..." 
+              <input
+                type="text"
+                placeholder="Search by ID, Income, Score..."
                 value={searchQuery}
                 onChange={(e) => {
                   setSearchQuery(e.target.value);
@@ -979,7 +979,7 @@ function App() {
 
             {/* Segment filter dropdown */}
             <label htmlFor="segment-filter" className="sr-only" style={{ display: 'none' }}>Filter by Segment</label>
-            <select 
+            <select
               id="segment-filter"
               className="filter-select"
               value={tableClusterFilter}
@@ -1023,8 +1023,8 @@ function App() {
                     <td>{row.score} pts</td>
                     <td>
                       <div className="row-cluster-indicator">
-                        <span 
-                          className="row-color-dot" 
+                        <span
+                          className="row-color-dot"
                           style={{ background: clusterMetadata[row.cluster].color }}
                         ></span>
                         <span>{clusterMetadata[row.cluster].name}</span>
@@ -1049,8 +1049,8 @@ function App() {
             Showing {totalFilteredItems > 0 ? (currentPage - 1) * itemsPerPage + 1 : 0} to {Math.min(currentPage * itemsPerPage, totalFilteredItems)} of {totalFilteredItems} entries
           </span>
           <div className="pagination-buttons">
-            <button 
-              type="button" 
+            <button
+              type="button"
               className="btn-page"
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={currentPage === 1}
@@ -1060,8 +1060,8 @@ function App() {
             <span style={{ alignSelf: 'center', padding: '0 0.5rem', fontWeight: 600 }}>
               Page {currentPage} of {totalPages}
             </span>
-            <button 
-              type="button" 
+            <button
+              type="button"
               className="btn-page"
               onClick={() => handlePageChange(currentPage + 1)}
               disabled={currentPage === totalPages}
